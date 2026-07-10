@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="320" viewBox="0 0 800 320">
+  <rect width="800" height="320" fill="#f7f1d0"/>
+  <rect x="0" y="220" width="800" height="100" fill="#6aa84f"/>
+  <circle cx="180" cy="120" r="60" fill="#f4c542"/>
+  <rect x="120" y="150" width="120" height="80" fill="#5a8f3d"/>
+  <rect x="320" y="90" width="220" height="120" fill="#4c6a7d"/>
+  <rect x="345" y="110" width="170" height="80" fill="#dce8ef"/>
+  <path d="M560 90 L720 90 L640 170 Z" fill="#c96f34"/>
+  <path d="M620 120 L700 160 L620 200 Z" fill="#8f4a1d"/>
+  <text x="60" y="52" font-family="Verdana, Arial, sans-serif" font-size="32" font-weight="bold" fill="#2d3f38">COMMUNITY PARK</text>
+</svg>

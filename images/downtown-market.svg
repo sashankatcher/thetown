@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="320" viewBox="0 0 800 320">
+  <rect width="800" height="320" fill="#f4e7d3"/>
+  <rect x="0" y="220" width="800" height="100" fill="#8b5e3c"/>
+  <rect x="70" y="90" width="120" height="120" fill="#b44d4d"/>
+  <rect x="220" y="90" width="120" height="120" fill="#4e7d8b"/>
+  <rect x="370" y="90" width="120" height="120" fill="#c99a2c"/>
+  <rect x="520" y="90" width="140" height="120" fill="#2f6b52"/>
+  <path d="M120 90 L180 40 L240 90" fill="none" stroke="#ffffff" stroke-width="8"/>
+  <path d="M270 90 L330 40 L390 90" fill="none" stroke="#ffffff" stroke-width="8"/>
+  <path d="M420 90 L480 40 L540 90" fill="none" stroke="#ffffff" stroke-width="8"/>
+  <text x="60" y="52" font-family="Verdana, Arial, sans-serif" font-size="30" font-weight="bold" fill="#4a2e20">DOWNTOWN MARKET</text>
+</svg>

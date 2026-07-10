@@ -39,6 +39,33 @@ body {
   background: #ffffcc;
 }
 
+.carousel {
+  border: 2px solid #000000;
+  margin-top: 10px;
+  padding: 8px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  width: 300%;
+  animation: slide 12s infinite;
+}
+
+.carousel-track img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #000000;
+}
+
+@keyframes slide {
+  0%, 25% { transform: translateX(0%); }
+  33%, 58% { transform: translateX(-33.333%); }
+  66%, 91% { transform: translateX(-66.666%); }
+  100% { transform: translateX(0%); }
+}
+
 .tiny {
   margin: 0 0 6px;
   font-size: 12px;
