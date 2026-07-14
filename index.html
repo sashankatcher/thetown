@@ -67,6 +67,17 @@
             <div class="image-box">[insert image here]</div>
           </div>
 
+          <div class="panel signup-panel">
+            <h2>Join Our Email List</h2>
+            <p>Sign up to receive town updates, events, and announcements.</p>
+            <form id="email-signup-form" class="signup-form">
+              <label class="sr-only" for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+              <button type="submit">Sign Up</button>
+            </form>
+            <p id="signup-message" class="signup-message" aria-live="polite"></p>
+          </div>
+
           <div class="panel">
             <h2>Need Help?</h2>
             <p>Call the town office or visit during regular business hours.</p>
@@ -81,5 +92,40 @@
         <p>Visitor Count: 000482</p>
       </div>
     </div>
+
+    <script>
+      const form = document.getElementById('email-signup-form');
+      const message = document.getElementById('signup-message');
+      const emailInput = document.getElementById('email');
+
+      function readEmails() {
+        const stored = localStorage.getItem('town-email-list');
+        return stored ? JSON.parse(stored) : [];
+      }
+
+      function saveEmail(email) {
+        const emails = readEmails();
+        const normalizedEmail = email.toLowerCase();
+
+        if (!emails.includes(normalizedEmail)) {
+          emails.push(normalizedEmail);
+          localStorage.setItem('town-email-list', JSON.stringify(emails));
+        }
+      }
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const email = emailInput.value.trim();
+        if (!email) {
+          return;
+        }
+
+        saveEmail(email);
+        const count = readEmails().length;
+        message.textContent = `Thanks! ${email} has been added. We now have ${count} subscriber${count === 1 ? '' : 's'}.`;
+        form.reset();
+      });
+    </script>
   </body>
 </html>
