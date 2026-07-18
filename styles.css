@@ -56,13 +56,16 @@ body {
   position: relative;
   overflow: hidden;
   perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 .carousel-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation: cube-spin 32s infinite;
+  transform: translateX(100%);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  animation: slide-transition 32s infinite;
 }
 
 .carousel-slide img {
@@ -78,10 +81,10 @@ body {
   left: 0;
   right: 0;
   bottom: 50px;
-  padding: 8px 12px;
-  background: lch(19.65% 98.76 306.29);
+  padding: 6px 12px;
+  background: #000000;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 13px;
   font-family: "Times New Roman", serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -93,18 +96,22 @@ body {
 .carousel-slide:nth-child(3) { animation-delay: 16s; }
 .carousel-slide:nth-child(4) { animation-delay: 24s; }
 
-@keyframes cube-spin {
-  0%, 100% {
+@keyframes slide-transition {
+  0%, 8% {
     opacity: 0;
-    transform: rotateY(90deg) scale(0.95);
+    transform: translateX(100%);
   }
-  5%, 20% {
+  8%, 20% {
     opacity: 1;
-    transform: rotateY(0deg) scale(1);
+    transform: translateX(0);
   }
-  25%, 95% {
+  20%, 28% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  28.01%, 100% {
     opacity: 0;
-    transform: rotateY(-90deg) scale(0.95);
+    transform: translateX(-100%);
   }
 }
 
