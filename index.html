@@ -11,7 +11,11 @@
     <div class="wrapper">
       <div class="banner">
         <strong>WELCOME TO FROGMOUTH</strong>
-      
+        <div class="banner-weather">
+          <img src="images/WEATHER.png" alt="Weather icon" />
+          <span>WEATHER</span>
+          <span class="banner-tooltip">Please make all weather requests a day in advance </span>
+        </div>
       </div>
 
       <div class="topbox">
@@ -26,15 +30,19 @@
           </div>
           <div class="carousel-slide">
             <img src="images/DEPICTIONENVIRONMENT.gif" alt="Town hall building" />
-            <div class="carousel-caption">Preserving Our Environment</div>
+            <div class="carousel-caption">Beautiful skies all year round</div>
           </div>
           <div class="carousel-slide">
             <img src="images/DEPICTIONFOOD.jpg" alt="Community park event" />
-            <div class="carousel-caption">Fresh Food and Local Events</div>
+            <div class="carousel-caption">Great food</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="images/DEPICTIONNEIGHBORHOODWATCH.png" alt="Neighborhood watch" />
+            <div class="carousel-caption">Safe</div>
           </div>
           <div class="carousel-slide">
             <img src="images/DEPICTIONNEIGHBOR.jpg" alt="Downtown market" />
-            <div class="carousel-caption">Neighbors and Community Life</div>
+            <div class="carousel-caption">The best neighbors</div>
           </div>
         </div>
       </div>
@@ -68,8 +76,7 @@
             <h2>Featured Notice</h2>
             <p>
               Replace this box with your own announcement, image, or special event notice.
-            </p>
-            <div class="image-box">[insert image here]</div>
+           
           </div>
 
           <div class="panel signup-panel">
@@ -99,9 +106,27 @@
     </div>
 
     <script>
+      const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle('active', slideIndex === index);
+        });
+      }
+
+      if (slides.length > 0) {
+        showSlide(0);
+        setInterval(() => {
+          currentSlide = (currentSlide + 1) % slides.length;
+          showSlide(currentSlide);
+        }, 6000);
+      }
+
       const form = document.getElementById('email-signup-form');
       const message = document.getElementById('signup-message');
       const emailInput = document.getElementById('email');
+      const recipientEmail = 'sasha.katcher@gmail.com';
 
       function readEmails() {
         const stored = localStorage.getItem('town-email-list');
@@ -118,7 +143,26 @@
         }
       }
 
-      form.addEventListener('submit', (event) => {
+      async function forwardEmail(email) {
+        try {
+          await fetch('https://formsubmit.co/ajax/' + recipientEmail, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              email: email,
+              subject: 'New signup from The Town website',
+              message: 'A new email signup was submitted from the website.'
+            })
+          });
+        } catch (error) {
+          console.error('Could not forward signup email:', error);
+        }
+      }
+
+      form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const email = emailInput.value.trim();
@@ -127,8 +171,9 @@
         }
 
         saveEmail(email);
+        await forwardEmail(email);
         const count = readEmails().length;
-        message.textContent = `Thanks! ${email} has been added. We now have ${count} subscriber${count === 1 ? '' : 's'}.`;
+        message.textContent = `Thanks! ${email} has been added.`;
         form.reset();
       });
     </script>
